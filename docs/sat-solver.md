@@ -259,6 +259,15 @@ Where
 with version _k_ in the form of Helm's [semantic version
 ranges](https://devhints.io/semver).
 
+With semver _(a,b,c)_, where
+<img src="https://render.githubusercontent.com/render/math?math=0 \leq a,b,c \leq 10^{3}">,
+<img src="https://render.githubusercontent.com/render/math?math=0 \leq a,b,c \leq 10^{3}">,
+the normalized semantic version
+<img src="https://render.githubusercontent.com/render/math?math=\overline{semver}">
+is calculated by constructing a fractional number such that:
+- the integer part is equal to
+<img src="https://render.githubusercontent.com/render/math?math=a * 10^{3} %2B b * 10^{0}">
+- the fractional part is equal to _c_.
 The normalized semantic version is calculated by constructing a fractional
 number such that:
 
@@ -267,10 +276,13 @@ number such that:
 
 E.g:
 
-- `1.2.1 -> 1,21`
-- `0.46.3 -> 0,463`
-- `7.10.1 -> 7,101`
+- `1.2.1 -> 1000 + 2 + 0,1 = 1002,1`
+- `0.46.3 -> 0,463 = 46,3`
+- `7.10.1 -> 7,101 = 7010,1`
 
+The distance
+<img src="https://render.githubusercontent.com/render/math?math=d((a.b.c),(x.y.z))">
+between 2 semvers is the Euclidean distance between their normalized values.
 
 The objective function will be:
 
